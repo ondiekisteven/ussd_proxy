@@ -38,11 +38,11 @@ def ussd_service():
         else:
             response_type = 3
     xml_response = f"""<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Msg SYSTEM "ussd.dtd">
 <msg>
 <msisdn>{msisdn}</msisdn>
-<sessionid>{sessionId}</sessionid>
-<request type="{response_type}">{ussd_response}</request>
-</msg>
-<msg>"""
+<sessionId>{sessionId}</sessionId>
+<response type="{response_type}">{ussd_response}</response>
+</msg>"""
     logger.info(xml_response)
     return Response(xml_response, mimetype='text/xml')
