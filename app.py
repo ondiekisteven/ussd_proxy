@@ -37,9 +37,9 @@ def ussd_service():
             response_type = 2
         else:
             response_type = 3
-    xml_response = f"""<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Msg SYSTEM "ussd.dtd">
-<msg>
+
+        ussd_response = ussd_response[3:]
+    xml_response = f"""<msg>
 <msisdn>{msisdn}</msisdn>
 <sessionId>{sessionId}</sessionId>
 <response type="{response_type}">{ussd_response}</response>
