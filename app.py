@@ -43,7 +43,6 @@ def ussd_service():
 <sessionid>{sessionId}</sessionid>
 <request type="{response_type}">{ussd_response}</request>
 </msg>
-<msg>
-    """
+<msg>"""
     logger.info(xml_response)
     return Response(xml_response, mimetype='text/xml')
