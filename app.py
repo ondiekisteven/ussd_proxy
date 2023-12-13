@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 # *502*148
-@app.route('/ussd_service')
+@app.route('/ussd_service/')
 def ussd_service():
     msisdn = request.args.get('msisdn')
     sessionId = request.args.get('sessionid') or ""
