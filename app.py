@@ -2,13 +2,26 @@ import logging
 import os
 
 import requests
-from flask import Flask, Response, request
+from flask import Flask, Response, request, make_response
 
 from config import configure_logger
 
 app = Flask(__name__)
 configure_logger('ussd')
 logger = logging.getLogger(__name__)
+
+whitelist = [
+    '26659494054',
+    '26657542666',
+    '26658570306',
+    '26656014915',
+    '26658064901',
+    '26659539472',
+    '26656197251',
+    '26659494062',
+    '26659456441',
+    '26657253095'
+]
 
 
 # *502*148
@@ -19,6 +32,9 @@ def ussd_service():
     request_type = request.args.get('type')
     ussdString = request.args.get('request')
     logger.info(request.args)
+
+    if msisdn not in whitelist:
+        return make_response({'error': 'number not allowed'}, 400)
 
     if str(request_type) not in ['1', '2']:
         response_type = ""
